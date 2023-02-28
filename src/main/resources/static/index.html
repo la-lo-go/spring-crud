@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notas de alumnos</title>
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="js/conexion.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="grid">
+        <!-- New-nota form -->
+        <div id="new-nota-form">
+            <article>
+                <h2>Nueva nota</h2>
+
+                <form id="nota-alumno">
+                    <!-- Markup example 1: input is inside label -->
+                    <label for="nombre">
+                        Nombre
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                    </label>
+
+                    <label for="apellidos">
+                        Apellidos
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                    </label>
+
+                    <Label for="nota">
+                        Nota
+                        <input type="number" id="nota" name="nota" placeholder="Nota" required min="0" max="10">
+                    </Label>
+
+                        <!-- Button -->
+                        <button type="submit" onclick="insertarNota()">Insertar nota</button>
+                </form>
+            </article>
+        </div>
+
+        <!-- Edit form -->
+        <div id="edit-form" hidden>
+            <article>
+                <h2>Editar nota</h2>
+
+                <form id="nota-alumno-edit">
+
+                    <input type="hidden" id="id-edit" name="id" required>
+
+                    <label for="nombre">
+                        Nombre
+                        <input type="text" id="nombre-edit" name="nombre" placeholder="Nombre" required>
+                    </label>
+
+                    <label for="apellidos">
+                        Apellidos
+                        <input type="text" id="apellidos-edit" name="apellidos" placeholder="Apellidos" required>
+                    </label>
+
+                    <Label for="nota">
+                        Nota
+                        <input type="number" id="nota-edit" name="nota" placeholder="Nota" required min="0" max="10">
+                    </Label>
+
+                    <!-- Button -->
+                    <div class="grid">
+                        <div class="col-6">
+                            <button type="button" class="red" onclick="cancelEdit()">Cancelar edición</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="green" onclick="editNota(id)">Editar nota</button>
+                        </div>
+                    </div>
+
+                </form>
+            </article>
+        </div>
+
+        <!-- Notas table -->
+        <div id="table-div">
+            <h2>Notas de alumnos</h2>
+
+            <table id="table-notas" role="grid" >
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nota</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table-notas-data">
+                    <!-- Here will be displayed the data -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1AB3E6" fill-opacity="1" d="M0,160L34.3,170.7C68.6,181,137,203,206,186.7C274.3,171,343,117,411,122.7C480,128,549,192,617,181.3C685.7,171,754,85,823,69.3C891.4,53,960,107,1029,149.3C1097.1,192,1166,224,1234,202.7C1302.9,181,1371,107,1406,69.3L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg></body>
+<script>
+    function showEditForm(id, nombre, apellidos, nota) {
+        document.querySelector('#edit-form').hidden = false;
+        document.querySelector('#new-nota-form').hidden = true;
+
+        document.querySelector('#id-edit').value = id;
+        document.querySelector('#nombre-edit').value = nombre;
+        document.querySelector('#apellidos-edit').value = apellidos;
+        document.querySelector('#nota-edit').value = nota;
+
+        document.querySelector('#edit-form button[type="submit"]').setAttribute('onclick', 'editNota(' + id + ')');
+    }
+
+    function cancelEdit() {
+        document.querySelector('#edit-form').hidden = true;
+        document.querySelector('#new-nota-form').hidden = false;
+    }
+</script>
+</html>
