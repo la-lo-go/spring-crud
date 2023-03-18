@@ -1,2 +1,13 @@
-# Springboot + MariaDB + SQL + PicoCSS CRUD
-CRUD creado como practica introductoria a la creacion de APIs con Springboot y MariaDB
+# Springboot + MariaDB + PicoCSS CRUD
+CRUD created as an introductory practice to creating APIs with Springboot and MariaDB
+
+## Main view
+![](docs/index.jpg)
+
+## Edit 
+The panel at the right changes to the edit panel.
+![](docs/edit.jpg)
+
+## Dinamic search 
+Each time you type in the search bar, a request is generated to search the database by first and last name.
+![](docs/search.jpg)
