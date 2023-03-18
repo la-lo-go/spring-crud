@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notas de alumnos</title>
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="js/conexion.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="grid">
+        <!-- New-nota form -->
+        <div id="new-nota-form">
+            <article>
+                <h2>Nueva nota</h2>
+
+                <form id="nota-alumno">
+                    <!-- Markup example 1: input is inside label -->
+                    <label for="nombre">
+                        Nombre
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                    </label>
+
+                    <label for="apellidos">
+                        Apellidos
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                    </label>
+
+                    <Label for="nota">
+                        Nota
+                        <input type="number" id="nota" name="nota" placeholder="Nota" required min="0" max="10">
+                    </Label>
+
+                        <!-- Button -->
+                        <button type="submit" onclick="insertarNota()">Insertar nota</button>
+                </form>
+            </article>
+        </div>
+
+        <!-- Edit form -->
+        <div id="edit-form" hidden>
+            <article>
+                <h2>Editar nota</h2>
+
+                <form id="nota-alumno-edit">
+
+                    <input type="hidden" id="id-edit" name="id" required>
+
+                    <label for="nombre">
+                        Nombre
+                        <input type="text" id="nombre-edit" name="nombre" placeholder="Nombre" required>
+                    </label>
+
+                    <label for="apellidos">
+                        Apellidos
+                        <input type="text" id="apellidos-edit" name="apellidos" placeholder="Apellidos" required>
+                    </label>
+
+                    <Label for="nota">
+                        Nota
+                        <input type="number" id="nota-edit" name="nota" placeholder="Nota" required min="0" max="10">
+                    </Label>
+
+                    <!-- Button -->
+                    <div class="grid">
+                        <div class="col-6">
+                            <button type="button" class="red" onclick="cancelEdit()">Cancelar edición</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="green" onclick="editNota(id)">Editar nota</button>
+                        </div>
+                    </div>
+
+                </form>
+            </article>
+        </div>
+
+        <div>
+            <!-- Search form -->
+            <div id="search-form" class="grid">
+                <label>
+                    <input type="search" id="search-str" placeholder="Search by first or last name">
+                </label>
+            </div>
+
+            <!-- Notas table -->
+            <div id="table-div">
+                <table id="table-notas" role="grid" >
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nota</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="table-notas-data">
+                        <!-- Here will be displayed the data -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showEditForm(id, nombre, apellidos, nota) {
+        document.querySelector('#edit-form').hidden = false;
+        document.querySelector('#new-nota-form').hidden = true;
+
+        document.querySelector('#id-edit').value = id;
+        document.querySelector('#nombre-edit').value = nombre;
+        document.querySelector('#apellidos-edit').value = apellidos;
+        document.querySelector('#nota-edit').value = nota;
+
+        document.querySelector('#edit-form button[type="submit"]').setAttribute('onclick', 'editNota(' + id + ')');
+    }
+
+    function cancelEdit() {
+        document.querySelector('#edit-form').hidden = true;
+        document.querySelector('#new-nota-form').hidden = false;
+    }
+</script>
+</html>

@@ -1,0 +1,27 @@
+.red {
+    background-color: #c94d4d;
+    border: none
+}
+
+.green {
+    background-color: #4fc74f;
+    border: none
+}
+
+#search-form {
+    margin-top: 40px;
+    margin-left: auto;
+}
+
+#search-form input {
+    width: 100%;
+}
+
+div{
+    z-index: 9999;
+}
+
+svg {
+    z-index: -9999;
+    margin-top: -5%;
+}
